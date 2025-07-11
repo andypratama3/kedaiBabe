@@ -18,6 +18,8 @@ class HeroResource extends Resource
     protected static ?string $model = Hero::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Data Gambar';
+
     protected static ?string $navigationLabel = 'Hero Slider';
 
     public static function form(Form $form): Form
@@ -32,10 +34,10 @@ class HeroResource extends Resource
                     ->label('Gambar')
                     ->required()
                     ->disk('public')
-                    ->directory('heros/')
+                    ->directory('hero/')
                     ->visibility('public')
                     ->image()
-                    ->imagePreviewHeight('250')
+                    ->imagePreviewHeight('150')
                     ->preserveFilenames(false)
                     ->columnSpanFull(),
             ]);

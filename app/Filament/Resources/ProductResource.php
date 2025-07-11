@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Models\Category;
-use App\Models\Product;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Product;
+use App\Models\Category;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Support\RawJs;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ProductResource\Pages;
 
 class ProductResource extends Resource
 {
@@ -33,12 +34,12 @@ class ProductResource extends Resource
                     ->afterStateUpdated(fn ($state, callable $set) =>
                         $set('slug', \Str::slug($state))
                     ),
-
                 Forms\Components\TextInput::make('price')
-                    ->label('Harga')
-                    ->required()
-                    ->numeric()
-                    ->prefix('Rp'),
+                ->label('Harga')
+                ->required()
+                ->mask(RawJs::make('$money($input)'))
+                ->stripCharacters(',')
+                ->numeric(),
 
                 Forms\Components\Select::make('category_id')
                     ->label('Kategori')
@@ -70,7 +71,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('attachment')
+                Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
                     ->disk('public')
                     ->height(50)
@@ -82,13 +83,21 @@ class ProductResource extends Resource
 
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
-                    ->money('IDR')
+                    ->formatStateUsing(fn (string $state): string => 'Rp. ' . number_format($state, 0, ',', '.'))
+
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
+
+             Tables\Columns\ToggleColumn::make('is_active')
+                ->label('Status')
+                ->onColor('success')
+                ->offColor('danger'),
+
+
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
@@ -101,6 +110,7 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('Aksi')
                 ->label('Aksi'),
 
@@ -109,6 +119,7 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
                 ->requiresConfirmation()

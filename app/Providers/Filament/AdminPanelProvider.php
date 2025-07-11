@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('dashboard')
             ->brandName('Dashboard Kedai Babe')
+            ->favicon(asset('favicon.ico'))
             ->login()
             ->colors([
                 'primary' => Color::Amber,
