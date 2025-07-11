@@ -45,6 +45,7 @@ class ProductResource extends Resource
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
+                    ->columnSpanFull('full')
                     ->required(),
 
                 Forms\Components\FileUpload::make('image')
