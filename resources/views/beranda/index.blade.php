@@ -39,10 +39,9 @@
                     @if ($loop->even)
                         {{-- Item genap: gambar di kanan --}}
                         <div class="col-md-6 col-sm-12 ftco-animate">
-                            <span class="subheading">New Menu</span>
+                            <span class="subheading">New Menu~⭐️</span>
                             <h1 class="mb-4">{{ $item->name }}</h1>
-                            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                                necessary regelialia.</p>
+                            {{-- <p class="mb-4 mb-md-5"></p> --}}
                             <p>
                                 <a href="{{ route('menu') }}" class="btn btn-primary btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Menu</a>
                             </p>
@@ -53,10 +52,9 @@
                     @else
                         {{-- Item ganjil: gambar di kiri --}}
                         <div class="col-md-6 ftco-animate order-md-last">
-                            <span class="subheading">New Menu</span>
+                            <span class="subheading">New Menu~⭐️</span>
                             <h1 class="mb-4">{{ $item->name }}</h1>
-                            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                                necessary regelialia.</p>
+                            {{-- <p class="mb-4 mb-md-5"></p> --}}
                             <p>
                                 <a href="{{ route('menu') }}" class="btn btn-primary btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Menu</a>
                             </p>
@@ -102,8 +100,8 @@
             <div class="social d-md-flex pl-md-5 p-4 align-items-center">
                 <ul class="social-icon">
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    <li class="ftco-animate"><a href="https://web.facebook.com/people/Kedai-BABE-Samarinda/100063596827516/" target="__blank"><span class="icon-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="https://www.instagram.com/kedaibabe.official/" target="__blank"><span class="icon-instagram"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -356,6 +354,14 @@
                         <div class="form-group align-items-center">
                             <p>Facebook</p>
                             <span class="icon-facebook"> Kedai-BABE-Samarinda </span>
+                        </div>
+                    </div>
+                    <div class="d-md-flex">
+                        <div class="form-group align-items-center">
+                            <p>WhtasApp</p>
+                            <span>+6281532286922</span>
+                            <br>
+                            <a href="https://wa.me/6281532286922" class="btn btn-success btn-sm" target="__blank" style="border-radius: 10px;"><span class="icon-whatsapp"></span> Kirim Pesan</a>
                         </div>
                     </div>
                    <div class="d-md-flex">
