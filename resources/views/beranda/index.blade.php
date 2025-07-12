@@ -109,15 +109,26 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-about d-md-flex">
-    <div class="one-half img" style="background-image: url(images/about.jpg);"></div>
+    <div class="one-half img" style="background-image: url('{{ asset('assets/images/about.jpg') }}');"></div>
     <div class="one-half ftco-animate">
-        <div class="heading-section ftco-animate ">
-            <h2 class="mb-4">Selamat Datang Di  <img src="{{ asset('assets/images/logo.jpg') }}" width="40px" style="border-radius: 10px;" alt="">Kedai Babe</span> Prasmanan</h2>
+        <div class="heading-section ftco-animate">
+            <h2 class="mb-4">
+                Selamat Datang di
+                <img src="{{ asset('assets/images/logo.jpg') }}" width="40px" style="border-radius: 10px;" alt="Logo">
+                <strong>Kedai Babe</strong> Prasmanan
+            </h2>
         </div>
         <div>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, consequuntur, temporibus, veritatis atque error ipsa nobis distinctio cupiditate numquam quos nesciunt commodi molestias eos saepe reiciendis a ratione iste sed. Pariatur autem impedit aut recusandae eum laudantium dolore, distinctio nihil veniam laboriosam maiores, voluptatem eaque praesentium sapiente voluptate quibusdam porro sed! Illum fugit reiciendis quasi architecto dolore perferendis recusandae officiis facere placeat totam porro laboriosam rerum voluptates minus explicabo, numquam illo incidunt ex quos tempore sunt optio expedita ipsam atque. Nam inventore eligendi perferendis, praesentium, porro quos voluptate, aut corporis nulla aliquid repudiandae delectus repellat ex et maiores distinctio officiis.</p>
+            <p>
+                Kedai Babe adalah rumah makan dengan konsep <strong>prasmanan</strong> yang berlokasi di Samarinda.
+                Kami menyajikan berbagai pilihan menu rumahan yang lezat, higienis, dan terjangkau.
+                Dengan sistem ambil sendiri, pelanggan bebas memilih lauk dan porsi sesuai selera.
+            </p>
+            <p>
+                Suasana tempat yang nyaman dan pelayanan ramah menjadikan Kedai Babe tempat yang tepat untuk makan siang, makan malam, hingga acara keluarga atau kantor.
+                Kami selalu berkomitmen menghadirkan masakan khas Nusantara yang menggugah selera setiap harinya.
+            </p>
         </div>
     </div>
 </section>
@@ -127,9 +138,8 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <h2 class="mb-4">Our Services</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
+                <h2 class="mb-4">Layanan Kami</h2>
+                <p>Kedai Babe menghadirkan kenyamanan dalam menyantap makanan dengan konsep prasmanan, pilihan menu beragam, dan layanan cepat untuk semua pelanggan.</p>
             </div>
         </div>
         <div class="row">
@@ -139,9 +149,8 @@
                         <span class="flaticon-diet"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Healthy Foods</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <h3 class="heading">Prasmanan Rumahan</h3>
+                        <p>Ambil sendiri menu favoritmu dengan berbagai pilihan lauk, sayur, dan pelengkap khas rumahan yang menggugah selera.</p>
                     </div>
                 </div>
             </div>
@@ -151,20 +160,19 @@
                         <span class="flaticon-bicycle"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Fastest Delivery</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <h3 class="heading">Layanan Antar</h3>
+                        <p>Pesan makanan favoritmu secara online dan kami siap mengantarkan langsung ke rumah atau kantor dengan cepat dan hangat.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 ftco-animate">
                 <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5"><span
-                            class="flaticon-pizza-1"></span></div>
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-chef"></span>
+                    </div>
                     <div class="media-body">
-                        <h3 class="heading">Original Recipes</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <h3 class="heading">Resep Khas</h3>
+                        <p>Masakan kami dibuat dari resep warisan keluarga yang dijaga keasliannya, penuh cita rasa dan dibuat dengan bahan berkualitas.</p>
                     </div>
                 </div>
             </div>
@@ -277,10 +285,7 @@
 </section>
 
 
-
-
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);"
-    data-stellar-background-ratio="0.5">
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
@@ -289,36 +294,39 @@
                     <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
-                                <div class="icon"><span class="flaticon-pizza-1"></span></div>
-                                <strong class="number" data-number="100">0</strong>
-                                <span>Pizza Branches</span>
+                                <div class="icon"><span class="flaticon-diet"></span></div>
+                                <strong class="number" data-number="30">0</strong>
+                                <span>Menu Masakan</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-medal"></span></div>
-                                <strong class="number" data-number="85">0</strong>
-                                <span>Number of Awards</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-laugh"></span></div>
-                                <strong class="number" data-number="10567">0</strong>
-                                <span>Happy Customer</span>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
                                 <div class="icon"><span class="flaticon-chef"></span></div>
-                                <strong class="number" data-number="900">0</strong>
-                                <span>Staff</span>
+                                <strong class="number" data-number="15">0</strong>
+                                <span>Koki Berpengalaman</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-laugh"></span></div>
+                                <strong class="number" data-number="5000">0</strong>
+                                <span>Pelanggan Bahagia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-delivery-truck"></span></div>
+                                <strong class="number" data-number="1200">0</strong>
+                                <span>Pesanan Antar</span>
                             </div>
                         </div>
                     </div>
@@ -336,26 +344,25 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d694.8099210143774!2d117.12244942194359!3d-0.5467524921572738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6816848f9e045%3A0x6f2a337eef73e78e!2sKedai%20Babe!5e0!3m2!1sid!2sid!4v1752254880780!5m2!1sid!2sid" width="800" height="550" style="border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6 appointment ftco-animate">
-                <h3 class="mb-3">Contact Us</h3>
-                <form action="#" class="appointment-form">
+                <h3 class="mb-3">Sosial Media</h3>
                     <div class="d-md-flex">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="First Name">
+                        <div class="form-group align-items-center">
+                            <p>Instagram</p>
+                            <span class="icon-instagram">@kedaibabe.official</span>
+
                         </div>
                     </div>
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Last Name">
+                    <div class="d-md-flex">
+                        <div class="form-group align-items-center">
+                            <p>Facebook</p>
+                            <span class="icon-facebook"> Kedai-BABE-Samarinda </span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="3" class="form-control"
-                            placeholder="Message"></textarea>
+                   <div class="d-md-flex">
+                    <div class="form-group align-items-center">
+                        <p class="text-white text-center">Terima kasih telah mengunjungi <strong>Kedai Babe Samarinda</strong>. Kami berharap Anda menikmati hidangan kami. Kepuasan Anda adalah kebahagiaan kami!</p>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send" class="btn btn-primary py-3 px-4">
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
