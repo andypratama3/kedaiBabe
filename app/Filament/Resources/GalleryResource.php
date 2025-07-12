@@ -30,6 +30,7 @@ class GalleryResource extends Resource
                     ->label('Nama')
                     ->maxLength(45)
                     ->default(null)
+                    ->rules(['required','max:45'])
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->label('Foto')

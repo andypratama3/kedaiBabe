@@ -6,6 +6,7 @@ use App\Models\Hero;
 use App\Models\Gallery;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\PackageService;
 
 class WebsiteController extends Controller
 {
@@ -13,8 +14,9 @@ class WebsiteController extends Controller
     {
         $heros = Hero::orderBy('created_at', 'desc')->paginate(4);
         $products = Product::orderBy('created_at','desc')->paginate(10);
-        $gallerys = Gallery::orderBy('created_at','desc')->paginate(10);
-        return view('beranda.index', compact('heros','products', 'gallerys'));
+        $galleries = Gallery::orderBy('created_at','desc')->paginate(10);
+        $packageServices = PackageService::orderBy('created_at','desc')->paginate(10);
+        return view('beranda.index', compact('heros','products', 'galleries', 'packageServices'));
     }
 
     public function menu()
@@ -22,5 +24,17 @@ class WebsiteController extends Controller
         $products = Product::with('category')->get()->groupBy(fn ($product) => $product->category->name ?? 'Tanpa Kategori');
 
         return view('beranda.menu', compact('products'));
+    }
+
+    public function package()
+    {
+        $packageServices = PackageService::orderBy('created_at','desc')->paginate(10);
+        return view('beranda.package', compact('packageServices'));
+    }
+
+    public function packageService($slug)
+    {
+        $packageService = PackageService::where('slug', $slug)->firstOrFail();
+        return view('beranda.package-service', compact('packageService'));
     }
 }

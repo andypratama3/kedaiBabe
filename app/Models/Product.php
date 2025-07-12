@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -26,6 +27,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+
+    public function packageServices(): BelongsToMany
+    {
+        return $this->belongsToMany(PackageService::class, 'products_package_services')
+                    ->withPivot('quantity');
+    }
+
 
 
     public function getSlugOptions() : SlugOptions

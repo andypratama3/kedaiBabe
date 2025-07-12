@@ -5,22 +5,31 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Product;
-use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Support\RawJs;
+use App\Models\PackageService;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ProductResource\Pages;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 
-class ProductResource extends Resource
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PackageServiceResource\Pages;
+use App\Filament\Resources\PackageServiceResource\RelationManagers;
+
+class PackageServiceResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = PackageService::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationGroup = 'Data Master';
 
-    protected static ?string $navigationLabel = 'Produk';
+    protected static ?string $navigationLabel = 'Paket Layanan';
 
     public static function form(Form $form): Form
     {
@@ -33,27 +42,20 @@ class ProductResource extends Resource
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn ($state, callable $set) =>
                         $set('slug', \Str::slug($state))
-                    ),
+                ),
+                
                 Forms\Components\TextInput::make('price')
-                    ->label('Harga')
-                    ->required()
-                    ->mask(RawJs::make('$money($input)'))
-                    ->stripCharacters(',')
-                    ->numeric(),
-
-                Forms\Components\Select::make('category_id')
-                    ->label('Kategori')
-                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->columnSpanFull('full')
-                    ->required(),
+                ->label('Harga')
+                ->required()
+                ->mask(RawJs::make('$money($input)'))
+                ->stripCharacters(',')
+                ->numeric(),
 
                 Forms\Components\FileUpload::make('image')
-                    ->label('Gambar')
+                  ->label('Gambar')
                     ->required()
                     ->disk('public')
-                    ->directory('products/')
+                    ->directory('package_service/')
                     ->visibility('public')
                     ->image()
                     ->imagePreviewHeight('150')
@@ -61,9 +63,37 @@ class ProductResource extends Resource
                     ->columnSpanFull(),
 
                 Forms\Components\Textarea::make('description')
-                    ->label('Deskripsi')
-                    ->rows(4)
+                    ->required()
                     ->columnSpanFull(),
+
+
+            Repeater::make('products')
+                ->label('List Produk Paket')
+                ->schema([
+                    Grid::make(2)
+                        ->schema([
+                            Select::make('product_id')
+                                ->label('Produk')
+                                ->options(\App\Models\Product::all()->pluck('name', 'id'))
+                                ->searchable()
+                                ->required(),
+
+                            TextInput::make('quantity')
+                                ->label('Jumlah')
+                                ->numeric()
+                                ->default(1)
+                                ->required(),
+                        ]),
+                ])
+                ->defaultItems(1)
+                ->createItemButtonLabel('Tambah Produk')
+                ->deletable(true)
+                ->reorderable(false)
+                ->columns(1)
+                ->columnSpanFull()
+                ->itemLabel(fn ($state): ?string => null) // Hilangkan judul "Item 1"
+                ->collapsed(false),
+
             ]);
     }
 
@@ -71,42 +101,18 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar')
-                    ->disk('public')
-                    ->height(50)
-                    ->circular(),
-
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Nama')
                     ->searchable(),
-
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
                     ->formatStateUsing(fn (string $state): string => 'Rp. ' . number_format($state, 0, ',', '.'))
-
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Kategori')
-                    ->sortable()
-                    ->searchable(),
-
-             Tables\Columns\ToggleColumn::make('is_active')
-                ->label('Status')
-                ->onColor('success')
-                ->offColor('danger'),
-
-
-
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Diperbarui')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -115,12 +121,12 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->requiresConfirmation()
-                ->modalHeading('Hapus Kategori')
-                ->modalSubheading('Apakah Anda yakin ingin menghapus Produk ini?')
+                    ->requiresConfirmation()
+                    ->color('danger')
+                    ->modalHeading('Hapus Paket Layanan')
+                    ->modalButton('Hapus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -139,9 +145,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListPackageServices::route('/'),
+            'create' => Pages\CreatePackageService::route('/create'),
+            'edit' => Pages\EditPackageService::route('/{record}/edit'),
         ];
     }
 }
