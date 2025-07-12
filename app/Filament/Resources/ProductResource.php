@@ -110,10 +110,6 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
-                Tables\Columns\TextColumn::make('Aksi')
-                ->label('Aksi'),
-
             ])
             ->filters([
                 //

@@ -35,7 +35,6 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text align-items-center" data-scrollax-parent="true">
-
                     @if ($loop->even)
                         {{-- Item genap: gambar di kanan --}}
                         <div class="col-md-6 col-sm-12 ftco-animate">
@@ -65,14 +64,10 @@
                             <img src="{{ asset('storage/'.$item->image) }}" class="img-fluid" alt="">
                         </div>
                     @endif
-
                 </div>
             </div>
         </div>
     @endforeach
-
-
-
 </section>
 
 <section class="ftco-intro">
@@ -187,24 +182,34 @@
         </div>
     </div>
     <div class="container-wrap">
-        <div class="row no-gutters d-flex  mx-5">
-            @foreach ($products as $item)
+        <div class="row no-gutters d-flex mx-5">
+            @foreach ($products as $index => $item)
+                @php
+                    $positionInBlock = ($index % 6) + 1;
+                    $imgClass = $positionInBlock >= 4 ? 'order-lg-last' : '';
+                @endphp
 
-            <div class="col-lg-4 d-flex ftco-animate">
-                <div class="services-wrap d-flex">
-                    <a href="#" class="img" style="background-image: url({{ asset('storage/'. $item->image) }}); border-radius: 10px;"></a>
-                    <div class="text p-4">
-                        <h3>{{ $item->name }}</h3>
-                        <p>{{ \Str::limit($item->description, 30) }} </p>
-                    <p class="price"><span>Rp {{ number_format($item->price, 0, ',', '.') }}</span> <a href="#"
-                                class="ml-2 btn btn-white btn-outline-white">Order</a></p>
+                <div class="col-lg-4 d-flex ftco-animate mb-4">
+                    <div class="services-wrap d-flex">
+                        <a href="#" class="img {{ $imgClass }}"
+                            style="background-image: url('{{ asset('storage/'. $item->image) }}'); background-size: cover; background-position: center; border-radius: 10px; width: 50%;">
+                        </a>
+                        <div class="text p-4 d-flex flex-column justify-content-between" style="width: 50%;">
+                            <div>
+                                <h3>{{ $item->name }}</h3>
+                                <p class="mb-3">{{ \Str::limit($item->description, 30) }}</p>
+                            </div>
+                            <p class="price">
+                                <span>Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                                <a href="#" class="ml-2 btn btn-white btn-outline-white">Order</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
-
     </div>
+
 
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
@@ -326,7 +331,7 @@
         <div class="row no-gutters ">
             <div class="col-md-3 ftco-animate">
                 <a href="#" class="gallery img d-flex align-items-center"
-                    style="background-image: url(images/gallery-1.jpg);">
+                    style="background-image: url(assets/images/gallery-1.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-search"></span>
                     </div>
@@ -334,7 +339,7 @@
             </div>
             <div class="col-md-3 ftco-animate">
                 <a href="#" class="gallery img d-flex align-items-center"
-                    style="background-image: url(images/gallery-2.jpg);">
+                    style="background-image: url(assets/images/gallery-2.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-search"></span>
                     </div>
@@ -342,7 +347,7 @@
             </div>
             <div class="col-md-3 ftco-animate">
                 <a href="#" class="gallery img d-flex align-items-center"
-                    style="background-image: url(images/gallery-3.jpg);">
+                    style="background-image: url(assets/images/gallery-3.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-search"></span>
                     </div>
@@ -350,7 +355,7 @@
             </div>
             <div class="col-md-3 ftco-animate">
                 <a href="#" class="gallery img d-flex align-items-center"
-                    style="background-image: url(images/gallery-4.jpg);">
+                    style="background-image: url(assets/images/gallery-4.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-search"></span>
                     </div>
