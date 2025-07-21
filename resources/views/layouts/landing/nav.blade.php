@@ -15,7 +15,6 @@
                 <li class="nav-item {{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 <li class="nav-item {{ Route::is('menu') ? 'active' : '' }}"><a href="{{ route('menu') }}" class="nav-link">Menu</a></li>
                 <li class="nav-item {{ Route::is('package') ? 'active' : '' }}"><a href="{{ route('package') }}" class="nav-link">Menu Paket</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Kontak</a></li>
             </ul>
         </div>
     </div>
