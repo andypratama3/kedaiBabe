@@ -108,7 +108,7 @@
     </div>
 </section>
 <section class="ftco-about d-md-flex">
-    <div class="one-half img" style="background-image: url('{{ asset('assets/images/about.jpg') }}');"></div>
+    <div class="one-half img" style="background-image: url('{{ asset('assets/images/kedai_babe.jpeg') }}');"></div>
     <div class="one-half ftco-animate">
         <div class="heading-section ftco-animate">
             <h2 class="mb-4">
