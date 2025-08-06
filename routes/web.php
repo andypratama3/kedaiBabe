@@ -26,7 +26,6 @@ Route::group(['prefix' => '/'], function () {
             url('/'),
             url('/menu'),
             url('/paket-menu'),
-            url('/paket-menu/{slug}'),
             url('/menu'),
         ];
 
