@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\PackageServiceResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
 use App\Filament\BaseButton\BaseEditRecord;
 use App\Filament\Resources\PackageServiceResource;
+use Filament\Actions;
 
 class EditPackageService extends BaseEditRecord
 {
@@ -40,7 +39,7 @@ class EditPackageService extends BaseEditRecord
         $syncData = [];
 
         foreach ($products as $product) {
-            if (!empty($product['product_id']) && isset($product['quantity'])) {
+            if (! empty($product['product_id']) && isset($product['quantity'])) {
                 $syncData[$product['product_id']] = ['quantity' => $product['quantity']];
             }
         }

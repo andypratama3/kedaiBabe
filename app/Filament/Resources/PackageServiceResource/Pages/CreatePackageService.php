@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\PackageServiceResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\CreateRecord;
 use App\Filament\BaseButton\BaseCreateRecord;
 use App\Filament\Resources\PackageServiceResource;
 
@@ -25,11 +23,11 @@ class CreatePackageService extends BaseCreateRecord
     {
         $record = $this->record;
 
-        if (!empty($this->productsData)) {
+        if (! empty($this->productsData)) {
             $pivotData = [];
 
             foreach ($this->productsData as $product) {
-                if (!empty($product['product_id']) && isset($product['quantity'])) {
+                if (! empty($product['product_id']) && isset($product['quantity'])) {
                     $pivotData[$product['product_id']] = ['quantity' => $product['quantity']];
                 }
             }
@@ -37,6 +35,4 @@ class CreatePackageService extends BaseCreateRecord
             $record->products()->sync($pivotData);
         }
     }
-
-
 }

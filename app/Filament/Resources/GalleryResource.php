@@ -2,24 +2,23 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Gallery;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Tables\Columns\ImageColumn;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\GalleryResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\GalleryResource\RelationManagers;
+use App\Models\Gallery;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Table;
 
 class GalleryResource extends Resource
 {
     protected static ?string $model = Gallery::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationGroup = 'Data Gambar';
+
     protected static ?string $navigationLabel = 'Gallery Foto';
 
     public static function form(Form $form): Form
@@ -30,7 +29,7 @@ class GalleryResource extends Resource
                     ->label('Nama')
                     ->maxLength(45)
                     ->default(null)
-                    ->rules(['required','max:45'])
+                    ->rules(['required', 'max:45'])
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->label('Foto')
@@ -58,7 +57,7 @@ class GalleryResource extends Resource
                     ->circular()
                     ->stacked()
                     ->limit(3)
-                    ->limitedRemainingText()
+                    ->limitedRemainingText(),
 
             ])
             ->filters([
@@ -67,9 +66,9 @@ class GalleryResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->requiresConfirmation()
-                ->modalHeading('Hapus Gallery')
-                ->modalSubheading('Apakah Anda yakin ingin menghapus gallery ini?'),
+                    ->requiresConfirmation()
+                    ->modalHeading('Hapus Gallery')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus gallery ini?'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

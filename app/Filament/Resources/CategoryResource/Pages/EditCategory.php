@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\CategoryResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
 use App\Filament\BaseButton\BaseEditRecord;
 use App\Filament\Resources\CategoryResource;
+use Filament\Actions;
 
 class EditCategory extends BaseEditRecord
 {
@@ -17,6 +16,4 @@ class EditCategory extends BaseEditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
-
 }

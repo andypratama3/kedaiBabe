@@ -2,24 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Product;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Support\RawJs;
-use App\Models\PackageService;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Select;
-
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PackageServiceResource\Pages;
-use App\Filament\Resources\PackageServiceResource\RelationManagers;
+use App\Models\PackageService;
+use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Support\RawJs;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class PackageServiceResource extends Resource
 {
@@ -40,19 +34,18 @@ class PackageServiceResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, callable $set) =>
-                        $set('slug', \Str::slug($state))
-                ),
-                
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Str::slug($state))
+                    ),
+
                 Forms\Components\TextInput::make('price')
-                ->label('Harga')
-                ->required()
-                ->mask(RawJs::make('$money($input)'))
-                ->stripCharacters(',')
-                ->numeric(),
+                    ->label('Harga')
+                    ->required()
+                    ->mask(RawJs::make('$money($input)'))
+                    ->stripCharacters(',')
+                    ->numeric(),
 
                 Forms\Components\FileUpload::make('image')
-                  ->label('Gambar')
+                    ->label('Gambar')
                     ->required()
                     ->disk('public')
                     ->directory('package_service/')
@@ -66,33 +59,32 @@ class PackageServiceResource extends Resource
                     ->required()
                     ->columnSpanFull(),
 
+                Repeater::make('products')
+                    ->label('List Produk Paket')
+                    ->schema([
+                            Grid::make(2)
+                                ->schema([
+                                    Select::make('product_id')
+                                        ->label('Produk')
+                                        ->options(\App\Models\Product::all()->pluck('name', 'id'))
+                                        ->searchable()
+                                        ->required(),
 
-            Repeater::make('products')
-                ->label('List Produk Paket')
-                ->schema([
-                    Grid::make(2)
-                        ->schema([
-                            Select::make('product_id')
-                                ->label('Produk')
-                                ->options(\App\Models\Product::all()->pluck('name', 'id'))
-                                ->searchable()
-                                ->required(),
-
-                            TextInput::make('quantity')
-                                ->label('Jumlah')
-                                ->numeric()
-                                ->default(1)
-                                ->required(),
-                        ]),
-                ])
-                ->defaultItems(1)
-                ->createItemButtonLabel('Tambah Produk')
-                ->deletable(true)
-                ->reorderable(false)
-                ->columns(1)
-                ->columnSpanFull()
-                ->itemLabel(fn ($state): ?string => null) // Hilangkan judul "Item 1"
-                ->collapsed(false),
+                                    TextInput::make('quantity')
+                                        ->label('Jumlah')
+                                        ->numeric()
+                                        ->default(1)
+                                        ->required(),
+                                ]),
+                        ])
+                    ->defaultItems(1)
+                    ->createItemButtonLabel('Tambah Produk')
+                    ->deletable(true)
+                    ->reorderable(false)
+                    ->columns(1)
+                    ->columnSpanFull()
+                    ->itemLabel(fn ($state): ?string => null) // Hilangkan judul "Item 1"
+                    ->collapsed(false),
 
             ]);
     }
@@ -105,7 +97,7 @@ class PackageServiceResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
-                    ->formatStateUsing(fn (string $state): string => 'Rp. ' . number_format($state, 0, ',', '.'))
+                    ->formatStateUsing(fn (string $state): string => 'Rp. '.number_format($state, 0, ',', '.'))
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')

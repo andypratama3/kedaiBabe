@@ -19,7 +19,7 @@ class BaseCreateRecord extends CreateRecord
                 ->color('primary')
                 ->icon('heroicon-m-x-mark'),
 
-         Actions\Action::make('save')
+            Actions\Action::make('save')
                 ->label('Simpan')
                 ->submit('create-form') // ini penting!
                 ->color('success')

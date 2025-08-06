@@ -3,21 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\HeroResource\Pages;
-use App\Filament\Resources\HeroResource\RelationManagers;
 use App\Models\Hero;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class HeroResource extends Resource
 {
     protected static ?string $model = Hero::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationGroup = 'Data Gambar';
 
     protected static ?string $navigationLabel = 'Hero Slider';
@@ -65,9 +63,9 @@ class HeroResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->requiresConfirmation()
-                ->modalHeading('Hapus Hero')
-                ->modalSubheading('Apakah Anda yakin ingin menghapus hero ini?'),
+                    ->requiresConfirmation()
+                    ->modalHeading('Hapus Hero')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus hero ini?'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\GalleryResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
 use App\Filament\BaseButton\BaseEditRecord;
 use App\Filament\Resources\GalleryResource;
+use Filament\Actions;
 
 class EditGallery extends BaseEditRecord
 {
